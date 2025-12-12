@@ -1,0 +1,73 @@
+<div class="task-page">
+
+  
+  <header class="header">
+    <div class="header-left">
+      <h1>Tasks</h1>
+      <span class="total-tasks">Total: {{ tasks.length }}</span>
+    </div>
+
+    <div class="header-right">
+      <input type="text" placeholder="Search" [(ngModel)]="searchText" class="search icon-search" />
+
+      <button class="icon-btn" title="Filter">
+        <i class="icon-filter"></i>
+      </button>
+
+      <button class="icon-btn" title="Sort">
+        <i class="icon-move-up"></i>
+      </button>
+
+      <button class="add-btn">Add</button>
+    </div>
+  </header>
+
+  
+  <div class="task-grid">
+
+    
+    <div class="left">
+      <h3>Statistics</h3>
+      <div echarts [options]="donutChartOptions" class="donut"></div>
+
+      <h3>Task Status Overview</h3>
+      <div echarts [options]="statusChartOptions" class="status-chart"></div>
+    </div>
+
+    
+    <div class="right">
+      <table class="tasks-table">
+        <thead>
+          <tr>
+            <th>Task ID</th>
+            <th>Customer Name</th>
+            <th>Gender</th>
+            <th>Mobile No</th>
+            <th>WhatsApp No</th>
+            <th>Email ID</th>
+            <th>Preferred Language</th>
+            <th>Preferred Time</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let task of filteredTasks()">
+            <td>{{ task.id }}</td>
+            <td>{{ task.name }}</td>
+            <td>{{ task.gender }}</td>
+            <td>{{ task.mobile }}</td>
+            <td>{{ task.whatsapp }}</td>
+            <td>{{ task.email }}</td>
+            <td>{{ task.language }}</td>
+            <td>{{ task.time }}</td>
+            <td>
+              <span class="status" [ngClass]="task.status.toLowerCase()">{{ task.status }}</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>

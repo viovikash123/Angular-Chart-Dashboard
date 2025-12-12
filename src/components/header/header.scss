@@ -1,0 +1,46 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  color: rgb(20, 15, 15);
+  height: 60px;
+  padding: 10px 40px;
+
+  .logo {
+    font-size: 24px;
+    color: #595ddc;
+    font-weight: 600;
+  }
+
+  .menu {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+
+    li {
+        display: flex;
+      cursor: pointer;
+      font-size: 20px; 
+      color: rgb(163, 159, 159);;
+
+      &:hover {
+        color: #595ddc;
+      }
+
+      .profile-pic {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid white;
+        transition: transform 0.3s;
+
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+}

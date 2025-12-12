@@ -1,0 +1,26 @@
+ul {
+  li {
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    gap: 8px;
+    color: rgb(163, 159, 159);
+    border-left: 4px solid transparent;
+    border-radius: 6px;
+
+    i:hover {
+      cursor: pointer;
+      color: #595ddc;
+    }
+
+    &.active {
+      color: #4f46e5;
+      background: #eef2ff;
+      
+
+      i {
+        color: #4f46e5;
+      }
+    }
+  }
+}

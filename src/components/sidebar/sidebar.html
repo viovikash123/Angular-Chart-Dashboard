@@ -1,0 +1,9 @@
+<ul>
+
+    @for (item of items; track items) {
+   
+        <li [routerLink]="item.link" routerLinkActive="active"><i class="{{item.icon}}"></i></li>
+    }
+ 
+    
+</ul>
