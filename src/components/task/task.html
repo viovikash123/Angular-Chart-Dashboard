@@ -1,72 +1,96 @@
-<div class="task-page">
+<div class="container-fluid task-page py-3">
 
-  
-  <header class="header">
-    <div class="header-left">
-      <h1>Tasks</h1>
-      <span class="total-tasks">Total: {{ tasks.length }}</span>
+  <!-- HEADER -->
+  <header class="header d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 p-3 rounded header-bg text-white">
+
+    <!-- Left Header: Task Title + Total -->
+    <div class="d-flex align-items-center gap-2 mb-2 mb-md-0 w-100 justify-content-start">
+      <h1 class="mb-0 fs-5 fw-semibold">Tasks</h1>
+      <span class="total-tasks px-2 py-1 rounded bg-white text-primary fw-medium">
+        Total: {{ tasks.length }}
+      </span>
     </div>
 
-    <div class="header-right">
-      <input type="text" placeholder="Search" [(ngModel)]="searchText" class="search icon-search" />
+    <!-- Right Header: Search + Buttons -->
+    <div class="d-flex flex-wrap flex-md-nowrap gap-2 w-100 justify-content-start justify-content-md-end">
 
-      <button class="icon-btn" title="Filter">
+      <!-- Search Input with Icon Inside -->
+      <div class="position-relative flex-grow-1 flex-md-grow-0 mb-2 mb-md-0" style="min-width: 140px; max-width: 200px;">
+        <input type="text" placeholder="Search" [(ngModel)]="searchText"
+               class="form-control form-control-sm ps-3 pe-5" />
+        <i class="icon-search position-absolute" style="right: 12px; top: 50%; transform: translateY(-50%); color: #4f46e5;"></i>
+      </div>
+
+      <!-- Action Buttons -->
+      <button class="btn btn-sm btn-white text-primary mb-2 mb-md-0">
         <i class="icon-filter"></i>
       </button>
-
-      <button class="icon-btn" title="Sort">
+      <button class="btn btn-sm btn-white text-primary mb-2 mb-md-0">
         <i class="icon-move-up"></i>
       </button>
+      <button class="btn btn-sm btn-warning fw-medium mb-2 mb-md-0">
+        Add
+      </button>
 
-      <button class="add-btn">Add</button>
     </div>
   </header>
 
-  
-  <div class="task-grid">
+  <!-- GRID SECTION -->
+  <div class="row g-3">
 
-    
-    <div class="left">
-      <h3>Statistics</h3>
-      <div echarts [options]="donutChartOptions" class="donut"></div>
+    <!-- LEFT: Charts -->
+ <!-- LEFT: Charts -->
+<div class="col-12 col-lg-4">
+  <div class="left p-3 rounded shadow-sm bg-white mb-3 h-100">
+    <h3 class="fs-6 mb-2">Statistics</h3>
+    <div echarts [options]="donutChartOptions" class="donut-chart mb-3"></div>
 
-      <h3>Task Status Overview</h3>
-      <div echarts [options]="statusChartOptions" class="status-chart"></div>
-    </div>
+    <h3 class="fs-6 mb-2">Task Status Overview</h3>
+    <div echarts [options]="statusChartOptions" class="status-chart mb-0"></div>
+  </div>
+</div>
 
-    
-    <div class="right">
-      <table class="tasks-table">
-        <thead>
-          <tr>
-            <th>Task ID</th>
-            <th>Customer Name</th>
-            <th>Gender</th>
-            <th>Mobile No</th>
-            <th>WhatsApp No</th>
-            <th>Email ID</th>
-            <th>Preferred Language</th>
-            <th>Preferred Time</th>
-            <th>Status</th>
-          </tr>
-        </thead>
 
-        <tbody>
-          <tr *ngFor="let task of filteredTasks()">
-            <td>{{ task.id }}</td>
-            <td>{{ task.name }}</td>
-            <td>{{ task.gender }}</td>
-            <td>{{ task.mobile }}</td>
-            <td>{{ task.whatsapp }}</td>
-            <td>{{ task.email }}</td>
-            <td>{{ task.language }}</td>
-            <td>{{ task.time }}</td>
-            <td>
-              <span class="status" [ngClass]="task.status.toLowerCase()">{{ task.status }}</span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <!-- RIGHT: Table -->
+    <div class="col-12 col-lg-8">
+      <div class="right p-3 rounded shadow-sm bg-white overflow-auto h-100">
+        <table class="tasks-table table table-bordered table-striped table-sm mb-0" style="min-width: 850px; font-size: 0.85rem;">
+          <thead class="table-light">
+            <tr>
+              <th>Task ID</th>
+              <th>Customer Name</th>
+              <th>Gender</th>
+              <th>Mobile No</th>
+              <th>WhatsApp No</th>
+              <th>Email ID</th>
+              <th>Preferred Language</th>
+              <th>Preferred Time</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let task of filteredTasks()">
+              <td>{{ task.id }}</td>
+              <td>{{ task.name }}</td>
+              <td>{{ task.gender }}</td>
+              <td>{{ task.mobile }}</td>
+              <td>{{ task.whatsapp }}</td>
+              <td>{{ task.email }}</td>
+              <td>{{ task.language }}</td>
+              <td>{{ task.time }}</td>
+              <td>
+                <span class="status px-2 py-1 rounded"
+                      [ngClass]="{
+                        'completed': task.status.toLowerCase() === 'completed',
+                        'pending': task.status.toLowerCase() === 'pending',
+                        'wip': task.status.toLowerCase() === 'wip',
+                        'rescheduled': task.status.toLowerCase() === 'rescheduled'
+                      }">{{ task.status }}</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
   </div>
