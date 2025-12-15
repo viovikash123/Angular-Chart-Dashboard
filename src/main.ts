@@ -3,6 +3,8 @@ import { appConfig } from './app/app.config';
 import { App } from './app/app';
 import { provideEchartsCore } from 'ngx-echarts';
 import * as echarts from 'echarts';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
 
 bootstrapApplication(App, {
   ...appConfig,
